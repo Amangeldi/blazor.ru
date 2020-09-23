@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Amangeldi</Authors>
+    <PackageIcon>background.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Amangeldi/BlazorTable</RepositoryUrl>
+    <PackageId>AmanTable</PackageId>
+    <Version>1.2.0</Version>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <Description>BlazorTable - компонент таблица многоразового использования для Blazor</Description>
+    <Copyright>Аннаклычев Амангелди</Copyright>
+    <PackageProjectUrl>https://github.com/Amangeldi/BlazorTable</PackageProjectUrl>
+    <PackageReleaseNotes>Что нового?
+Добавил функционал фильтрации
+избавился от RenderFragment-ов в пользу рефлексии</PackageReleaseNotes>
+    <NeutralLanguage></NeutralLanguage>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.4" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\background.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="wwwroot\license.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

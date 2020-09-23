@@ -1,0 +1,60 @@
+﻿@inherits TableBase<TItem>
+@typeparam TItem
+<table class="table table-striped">
+    <thead>
+        <tr class="">
+            @foreach (var property in properties)
+            {
+                <th>
+                    @property.Name
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var property in properties)
+            {
+                <td>
+                    <input type="text" class="form-control" @oninput="e=>ApplyFilter(property, e.Value.ToString())" />
+                </td>
+            }
+        </tr>
+        @foreach (var item in ItemList)
+        {
+            <tr>
+                @foreach (var property in properties)
+                {
+                    <td>
+                        @if (property.PropertyType == typeof(DateTime))
+                        {
+                            @(((DateTime)property.GetValue(item)).ToShortDateString())
+                        }
+                        else
+                        {
+                            @property.GetValue(item)
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="pagination">
+    <button class="btn btn-info" @onclick=@(async () => SetPagerSize("back"))>&laquo;</button>
+    <button class="btn btn-secondary" @onclick=@(async () => NavigateToPage("previous"))>Пред.</button>
+    @for (int i = startPage; i <= endPage; i++)
+    {
+        var currentPage = i;
+        <button class="btn @(currentPage==curPage?"currentpage":"")" @onclick=@(async () => UpdateList(currentPage))>
+            @currentPage
+        </button>
+    }
+    <button class="btn btn-secondary" @onclick=@(async () => NavigateToPage("next"))>След.</button>
+    <button class="btn btn-info" @onclick=@(async () => SetPagerSize("forward"))>&raquo;</button>
+    <span class="btn btn-link disabled">Page @curPage of @pagesCount</span>
+</div>
+<head>
+    <link rel="stylesheet" type="text/css" href="_content/BlazorTable/styles.css">
+    <link rel="stylesheet" type="text/css" href="_content/BlazorTable/bootstrap/bootstrap.min.css">
+</head>
